@@ -1,0 +1,364 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0", 
+		"title": "REST-API MariaDB Assignment",
+		"description": "My Sample MariaDB Application API",
+		"license": {
+			"name": "Adrianna McKeown"
+		}
+	},
+	"host": "143.198.57.144:3000",
+	"basePath": "/",
+	"tags": [
+		{
+		"name": "Sample",
+		"description": "API for Sample MariaDB"
+		}
+	],
+	"schemes": [
+		"http"
+	],
+	"consumes": [
+		"application/json"
+	],
+	"produces": [
+		"application/json"
+	],
+	"paths": {
+		"/customers": {
+			"get": {
+				"tags": [
+					"Customer"
+				],
+			"summary": "Retrieve all customer records in database",
+			"responses": {
+				"200": {
+					"description": "OK",
+					"schema": {
+						"$ref": "#/definitions/customer"
+					}
+				}
+			}
+		}
+	},
+		"/agents": {
+			"get": {
+				"tags": [
+					"Agent"
+				],
+			"summary": "Retrieve all agent records from database",
+			"responses": {
+				"200": {
+					"description": "OK",
+					"schema": {
+						"$ref": "#/definitions/agents"
+					}
+				}
+			}
+		}
+	},
+		"/companies": {
+			"get": {
+				"tags": [
+					"Company"
+				],
+			"summary": "Retrieve all companies from database",
+			"responses": {
+				"200": {
+					"description": "OK",
+					"schema": {
+						"$ref": "#/definitions/company"
+					}
+				}
+			}
+		}
+	},
+		"/addCompany": {
+			"post": {
+				"tags": [
+					"Company"
+				],
+			"summary": "Create new company in database",
+			"parameters": [
+				{
+				"name": "company",
+				"in": "body",
+				"description": "Company that we want to create",
+				"schema": {
+					"$ref": "#/definitions/company"
+					}
+				}
+			],
+			"produces": [
+				"application/json"
+			],
+			"responses": {
+				"200": {
+					"description": "New company is created",
+					"schema": {
+						"$ref": "#/definitions/company"
+					}
+				}
+			}
+		}
+	},
+		"/updateCompany/:COMPANY_ID": {
+				"parameters": [
+					{
+						"name": "COMPANY_ID",
+						"in": "path",
+						"required": true,
+						"description": "ID of company that we want to find",
+						"type": "string"
+					}
+				],
+				"put": {
+					"summary": "Update company with given ID",
+					"tags": [
+						"Company"
+					],
+					"parameters": [
+						{
+							"name": "company",
+							"in": "body",
+							"description": "Company with new values of properties",
+							"schema": {
+								"$ref": "#/definitions/updateCompany"			
+							}
+						}
+					],
+					"responses": {
+						"200": {
+							"description": "Company is updated",
+							"schema": {
+								"$ref": "#/definitions/company"
+							}
+						},
+						"400": {
+							"description": "Invalid company supplied"
+						},
+						"404": {
+							"description": "Company not found"
+						}
+					}
+				}
+		},
+		
+		"/deleteAgent/:AGENT_CODE": {
+			"parameters": [
+                                        {
+                                                "name": "AGENT_CODE",
+                                                "in": "path",
+                                                "required": true,
+                                                "description": "Code of agent that we want to find",
+                                                "type": "string"
+                                        }
+                  	],
+			"delete": {
+				"summary": "Delete agent with given code",
+				"tags": [
+					"Agent"
+				],
+				"responses": {
+					"200": {
+						"description": "Agent is deleted",
+						"schema": {
+							"$ref": "#/definitions/agents"
+						}
+					},
+					"400": {
+						"description": "Invalid agent code supplied"
+					},
+					"404": {
+						"description": "Agent not found"
+					}
+				}
+			}
+		},
+		"/customers/:CUST_CODE": {
+			"parameters": [
+					{
+						"name": "CUST_CODE",
+						"in": "path",
+						"required": true, 
+						"description": "Code of a specific customer",
+						"type": "string"
+					}
+			],
+			"patch": {
+				"summary": "Update a customer",				
+				"tags": [
+					"Customer"
+				],
+				"parameters": [
+					{
+                                         	"name": "JsonPatch",
+                                                "in": "body",
+						"required": true,
+                                              	 "schema": {
+                                                	"$ref": "#/definitions/patchRequest"
+                                            	}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "OK",
+						"$ref": "#/definitions/customer"
+					}
+				}
+			}
+		}	
+	},
+	"definitions": {
+		"customer": {
+			"required": [
+				"CUST_CODE",
+				"CUST_NAME",
+				"CUST_CITY",
+				"WORKING_AREA",
+				"CUST_COUNTRY",
+				"GRADE",
+				"OPENING_AMT",
+				"RECEIVE_AMT",
+				"PAYMENT_AMT",
+				"OUTSTANDING_AMT",
+				"PHONE_NO",
+				"AGENT_CODE"
+			],
+			"properties": {
+				"CUST_CODE": {
+					"type": "string",
+					"uniqueItems": true
+				},
+				"CUST_NAME": {
+					"type": "string"
+				},
+				"CUST_CITY": {
+					"type": "string"
+				},
+				"WORKING_AREA": {
+					"type": "string"
+				},
+				"GRADE": {
+					"type": "integer"
+				},
+				"OPENING_AMT": {
+					"type": "integer"
+				},
+				"RECEIVE_AMT": {
+					"type": "integer"
+				},
+				"PAYMENT_AMT": {
+					"type": "integer"
+				},
+				"OUTSTANDING_AMT": {
+					"type": "integer"
+				},
+				"PHONE_NO": {
+					"type": "string"
+				},
+				"AGENT_CODE": {
+					"type": "string"
+				}
+			}
+		},
+
+                "agents": {
+                        "required": [
+                                "AGENT_CODE",
+                                "AGENT_NAME",
+                                "WORKING_AREA",
+                                "COMMISSION",
+                                "PHONE_NO",
+                                "COUNTRY"
+                        ],
+                        "properties": {
+                                "AGENT_CODE": {
+                                        "type": "string",
+                                        "uniqueItems": true
+                                },
+				"AGENT_NAME": {
+					"type": "string"
+				},
+				"WORKING_AREA": {
+					"type": "string"
+				},
+				"COMMISSION": {
+					"type": "integer"
+				},
+				"PHONE_NO": {
+					"type": "string"
+				},
+				"COUNTRY": {
+					"type": "string"
+				}
+			}
+		},
+
+		"company": {
+			"required": [
+				"COMPANY_ID",
+				"COMPANY_NAME",
+				"COMPANY_CITY"
+			],
+			"properties": {
+				"COMPANY_ID": {
+					"type": "string",
+					"uniqueItems": true
+				},
+				"COMPANY_NAME": {
+					"type": "string"
+				},
+				"COMPANY_CITY": {
+					"type": "string"
+				}
+			}		
+		},
+		
+		"updateCompany": {
+			"require": [
+				"COMPANY_NAME",
+				"COMPANY_CITY"
+			],
+			"properties": {
+				"COMPANY_NAME": {
+					"type": "string"
+				},
+				"COMPANY_CITY": {
+					"type": "string"
+				}
+			}
+		},
+		"patchDocument": {
+			"required": [
+				"op",
+				"path"
+			],
+			"properties": {
+				"op": {
+					"type": "string",
+					"description": "The operation to be performed",
+					"enum": ["add", "remove", "replace", "move", "copy", "test"]
+				},
+				"path": {
+					"type": "string",
+					"description": "A JSON-pointer"
+				},
+				"value": {
+					"type": "object",
+					"description": "The value to be used within the operation"
+				},
+				"from": {
+					"type": "string",
+					"description": "A string containing a JSON Pointer value"
+				}
+			}
+		}, "patchRequest": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/patchDocument"
+			}
+		}
+	}		
+}
