@@ -12,6 +12,7 @@ firewall-cmd --zone=public --add-port=3000/tcp --permanent
 firewall-cmd --zone=public --add-port=3001/tcp --permanent
 firewall-cmd --zone=public --add-port=3002/tcp --permanent
 firewall-cmd --zone=public --add-port=3003/tcp --permanent
+firewall-cmd --zone=public --add-port=4000/tcp --permanent
 firewall-cmd --reload
 yum makecache
 yum install git -y

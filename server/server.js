@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 4000;
 const bodyParser = require('body-parser');
+const axios = require('axios');
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 const mariadb = require('mariadb');
 const pool = mariadb.createPool({
@@ -123,8 +124,17 @@ app.delete('/deleteAgent/:AGENT_CODE', async (req, res) => {
 	}
 });
 
+app.get('/:param1', async (req, res) => {
+        let keyword = req.query.keyword;
+        let sayResponse = `Adrianna McKeown says ${keyword}.`;
+
+        console.log(sayResponse);
+
+        res.status(200).send(sayResponse)
+});
+
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.listen(port, () => {
-        console.log(`Example app listening at http://localhost:${port}`)
+        console.log(`Example app listening at http://143.198.57.144:${port}`)
 })

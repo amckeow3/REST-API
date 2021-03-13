@@ -21,3 +21,82 @@ node server.js
 vi server.js
 vi swagger.json
 vi server/js
+ls
+pwd
+cd server
+ls
+vi server.js
+node server.js
+git init
+git status
+git add .
+git commit -m "assigment08 swagger"
+git push https://github.com/amckeow3/REST-API.git main:main
+cd -
+git init
+git status
+git add .
+git commit -m "assignment08 swagger"
+git push https://github.com/amckeow3/REST-API.git main:main
+git push https://github.com/amckeow3/REST-API.git
+git status
+git add .
+git commit -m "assignment08 swagger"
+git config --global user.email "adrianna_mckeown@live.com"
+git commit -m "assignment 08"
+git push https://github.com/amckeow3/REST-API.git main:main
+git push https://github.com/amckeow3/REST-API.git master:main
+cd server
+vi server.js
+node server.js
+vi server.js
+clear
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+cd server
+vi server.js
+node server.js
+cd server
+vi server.js
+npm i axios
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+cd server
+ls -lah
+vi server.js
+node server.js
+rm .server.js.swp
+vi server.js
+npx kill-port 3000
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+vi server.js
+node server.js
+ls -lah
+cd server
+ls -lah
+vi .server.js.swp
+vi server.js
